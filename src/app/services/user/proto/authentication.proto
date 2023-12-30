@@ -3,7 +3,7 @@ syntax = "proto3";
 option go_package = "user/authentication";
 import "google/api/annotations.proto";
 
-service Authentication {
+service AuthenticationService {
   rpc SignUp (SignUpRequest) returns (SignUpResponse) {
     option (google.api.http) = {
       post: "/user/v1/authentication/signup"      

@@ -1,30 +1,30 @@
 syntax = "proto3";
 
-option go_package = "planning/groups";
+option go_package = "user/accounts";
 import "google/api/annotations.proto";
 
-service Groups {
+service AccountsService {
     rpc Create (Request) returns (Response) {
       option (google.api.http) = {
-        post: "/user/v1/groups"
+        post: "/user/v1/accounts"
       };
     } 
     
     rpc Update (Request) returns (Response) {
       option (google.api.http) = {
-        put: "/user/v1/groups"
+        put: "/user/v1/accounts"
       };
     }                      
   
     rpc Read (Request) returns (Response) {
       option (google.api.http) = {
-        get: "/user/v1/groups"
+        get: "/user/v1/accounts"
       };
     }
 
     rpc Delete (Request) returns (Response) {
         option (google.api.http) = {
-          delete: "/user/v1/groups"
+          delete: "/user/v1/accounts"
         };
       }
   }

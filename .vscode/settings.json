@@ -3,12 +3,9 @@
         "compile_on_save": true,
         "options": [
             "--proto_path=${workspaceRoot}",
-            "--go_out=${workspaceRoot}",
-            "--go_opt=paths=source_relative",
-            "--go-grpc_out=${workspaceRoot}",
-            "--go-grpc_opt=paths=source_relative",
-            "--grpc-gateway_out=${workspaceRoot}",
-            "--grpc-gateway_opt=paths=source_relative"
+            "--go_out=${workspaceRoot}/src/app/shared/protobuf",
+            "--go-grpc_out=${workspaceRoot}/src/app/shared/protobuf",
+            "--grpc-gateway_out=${workspaceRoot}/src/app/shared/protobuf",
         ]
     }
 }

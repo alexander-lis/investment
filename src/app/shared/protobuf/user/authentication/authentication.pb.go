@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v4.25.1
-// source: src/app/shared/protobuf/user/authentication.proto
+// source: src/app/services/user/proto/authentication.proto
 
 package authentication
 
@@ -33,7 +33,7 @@ type SignUpRequest struct {
 func (x *SignUpRequest) Reset() {
 	*x = SignUpRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[0]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +46,7 @@ func (x *SignUpRequest) String() string {
 func (*SignUpRequest) ProtoMessage() {}
 
 func (x *SignUpRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[0]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *SignUpRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignUpRequest.ProtoReflect.Descriptor instead.
 func (*SignUpRequest) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{0}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SignUpRequest) GetName() string {
@@ -80,7 +80,7 @@ type SignUpResponse struct {
 func (x *SignUpResponse) Reset() {
 	*x = SignUpResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[1]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -93,7 +93,7 @@ func (x *SignUpResponse) String() string {
 func (*SignUpResponse) ProtoMessage() {}
 
 func (x *SignUpResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[1]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -106,7 +106,7 @@ func (x *SignUpResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignUpResponse.ProtoReflect.Descriptor instead.
 func (*SignUpResponse) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{1}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SignUpResponse) GetName() string {
@@ -126,7 +126,7 @@ type SignInRequest struct {
 func (x *SignInRequest) Reset() {
 	*x = SignInRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[2]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -139,7 +139,7 @@ func (x *SignInRequest) String() string {
 func (*SignInRequest) ProtoMessage() {}
 
 func (x *SignInRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[2]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +152,7 @@ func (x *SignInRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignInRequest.ProtoReflect.Descriptor instead.
 func (*SignInRequest) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{2}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{2}
 }
 
 type SignInResponse struct {
@@ -164,7 +164,7 @@ type SignInResponse struct {
 func (x *SignInResponse) Reset() {
 	*x = SignInResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[3]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -177,7 +177,7 @@ func (x *SignInResponse) String() string {
 func (*SignInResponse) ProtoMessage() {}
 
 func (x *SignInResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[3]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -190,7 +190,7 @@ func (x *SignInResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignInResponse.ProtoReflect.Descriptor instead.
 func (*SignInResponse) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{3}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{3}
 }
 
 // LogOut.
@@ -203,7 +203,7 @@ type LogOutRequest struct {
 func (x *LogOutRequest) Reset() {
 	*x = LogOutRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[4]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -216,7 +216,7 @@ func (x *LogOutRequest) String() string {
 func (*LogOutRequest) ProtoMessage() {}
 
 func (x *LogOutRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[4]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +229,7 @@ func (x *LogOutRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogOutRequest.ProtoReflect.Descriptor instead.
 func (*LogOutRequest) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{4}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{4}
 }
 
 type LogOutResponse struct {
@@ -241,7 +241,7 @@ type LogOutResponse struct {
 func (x *LogOutResponse) Reset() {
 	*x = LogOutResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[5]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -254,7 +254,7 @@ func (x *LogOutResponse) String() string {
 func (*LogOutResponse) ProtoMessage() {}
 
 func (x *LogOutResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[5]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -267,7 +267,7 @@ func (x *LogOutResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogOutResponse.ProtoReflect.Descriptor instead.
 func (*LogOutResponse) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{5}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{5}
 }
 
 // User.
@@ -280,7 +280,7 @@ type User struct {
 func (x *User) Reset() {
 	*x = User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[6]
+		mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -293,7 +293,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_src_app_shared_protobuf_user_authentication_proto_msgTypes[6]
+	mi := &file_src_app_services_user_proto_authentication_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -306,62 +306,62 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP(), []int{6}
+	return file_src_app_services_user_proto_authentication_proto_rawDescGZIP(), []int{6}
 }
 
-var File_src_app_shared_protobuf_user_authentication_proto protoreflect.FileDescriptor
+var File_src_app_services_user_proto_authentication_proto protoreflect.FileDescriptor
 
-var file_src_app_shared_protobuf_user_authentication_proto_rawDesc = []byte{
-	0x0a, 0x31, 0x73, 0x72, 0x63, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64,
-	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x61,
-	0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f,
-	0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0x23, 0x0a, 0x0d, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x24, 0x0a, 0x0e, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x0f, 0x0a, 0x0d,
-	0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x10, 0x0a,
-	0x0e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x0f, 0x0a, 0x0d, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x22, 0x10, 0x0a, 0x0e, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x06, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x32, 0x89, 0x02, 0x0a, 0x0e, 0x41,
-	0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x51, 0x0a,
-	0x06, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x12, 0x0e, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20,
-	0x22, 0x1e, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x75, 0x74, 0x68, 0x65,
-	0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x73, 0x69, 0x67, 0x6e, 0x75, 0x70,
-	0x12, 0x51, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x12, 0x0e, 0x2e, 0x53, 0x69, 0x67,
-	0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x53, 0x69, 0x67,
-	0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x20, 0x22, 0x1e, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x75,
-	0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x73, 0x69, 0x67,
-	0x6e, 0x69, 0x6e, 0x12, 0x51, 0x0a, 0x06, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x12, 0x0e, 0x2e,
-	0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e,
-	0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26,
+var file_src_app_services_user_proto_authentication_proto_rawDesc = []byte{
+	0x0a, 0x30, 0x73, 0x72, 0x63, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x73, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x61, 0x75,
+	0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61,
+	0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x22, 0x23, 0x0a, 0x0d, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x24, 0x0a, 0x0e, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x0f, 0x0a, 0x0d, 0x53,
+	0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x10, 0x0a, 0x0e,
+	0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x0f,
+	0x0a, 0x0d, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
+	0x10, 0x0a, 0x0e, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x06, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x32, 0x90, 0x02, 0x0a, 0x15, 0x41, 0x75,
+	0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x12, 0x51, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x12, 0x0e, 0x2e,
+	0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e,
+	0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26,
 	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x22, 0x1e, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x76, 0x31,
 	0x2f, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f,
-	0x6c, 0x6f, 0x67, 0x6f, 0x75, 0x74, 0x42, 0x15, 0x5a, 0x13, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x61,
-	0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x69, 0x67, 0x6e, 0x75, 0x70, 0x12, 0x51, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e,
+	0x12, 0x0e, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x0f, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x22, 0x1e, 0x2f, 0x75, 0x73, 0x65, 0x72,
+	0x2f, 0x76, 0x31, 0x2f, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x2f, 0x73, 0x69, 0x67, 0x6e, 0x69, 0x6e, 0x12, 0x51, 0x0a, 0x06, 0x4c, 0x6f, 0x67,
+	0x4f, 0x75, 0x74, 0x12, 0x0e, 0x2e, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x4c, 0x6f, 0x67, 0x4f, 0x75, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x22, 0x1e, 0x2f, 0x75,
+	0x73, 0x65, 0x72, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6c, 0x6f, 0x67, 0x6f, 0x75, 0x74, 0x42, 0x15, 0x5a, 0x13,
+	0x75, 0x73, 0x65, 0x72, 0x2f, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_src_app_shared_protobuf_user_authentication_proto_rawDescOnce sync.Once
-	file_src_app_shared_protobuf_user_authentication_proto_rawDescData = file_src_app_shared_protobuf_user_authentication_proto_rawDesc
+	file_src_app_services_user_proto_authentication_proto_rawDescOnce sync.Once
+	file_src_app_services_user_proto_authentication_proto_rawDescData = file_src_app_services_user_proto_authentication_proto_rawDesc
 )
 
-func file_src_app_shared_protobuf_user_authentication_proto_rawDescGZIP() []byte {
-	file_src_app_shared_protobuf_user_authentication_proto_rawDescOnce.Do(func() {
-		file_src_app_shared_protobuf_user_authentication_proto_rawDescData = protoimpl.X.CompressGZIP(file_src_app_shared_protobuf_user_authentication_proto_rawDescData)
+func file_src_app_services_user_proto_authentication_proto_rawDescGZIP() []byte {
+	file_src_app_services_user_proto_authentication_proto_rawDescOnce.Do(func() {
+		file_src_app_services_user_proto_authentication_proto_rawDescData = protoimpl.X.CompressGZIP(file_src_app_services_user_proto_authentication_proto_rawDescData)
 	})
-	return file_src_app_shared_protobuf_user_authentication_proto_rawDescData
+	return file_src_app_services_user_proto_authentication_proto_rawDescData
 }
 
-var file_src_app_shared_protobuf_user_authentication_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_src_app_shared_protobuf_user_authentication_proto_goTypes = []interface{}{
+var file_src_app_services_user_proto_authentication_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_src_app_services_user_proto_authentication_proto_goTypes = []interface{}{
 	(*SignUpRequest)(nil),  // 0: SignUpRequest
 	(*SignUpResponse)(nil), // 1: SignUpResponse
 	(*SignInRequest)(nil),  // 2: SignInRequest
@@ -370,13 +370,13 @@ var file_src_app_shared_protobuf_user_authentication_proto_goTypes = []interface
 	(*LogOutResponse)(nil), // 5: LogOutResponse
 	(*User)(nil),           // 6: User
 }
-var file_src_app_shared_protobuf_user_authentication_proto_depIdxs = []int32{
-	0, // 0: Authentication.SignUp:input_type -> SignUpRequest
-	2, // 1: Authentication.SignIn:input_type -> SignInRequest
-	4, // 2: Authentication.LogOut:input_type -> LogOutRequest
-	1, // 3: Authentication.SignUp:output_type -> SignUpResponse
-	3, // 4: Authentication.SignIn:output_type -> SignInResponse
-	5, // 5: Authentication.LogOut:output_type -> LogOutResponse
+var file_src_app_services_user_proto_authentication_proto_depIdxs = []int32{
+	0, // 0: AuthenticationService.SignUp:input_type -> SignUpRequest
+	2, // 1: AuthenticationService.SignIn:input_type -> SignInRequest
+	4, // 2: AuthenticationService.LogOut:input_type -> LogOutRequest
+	1, // 3: AuthenticationService.SignUp:output_type -> SignUpResponse
+	3, // 4: AuthenticationService.SignIn:output_type -> SignInResponse
+	5, // 5: AuthenticationService.LogOut:output_type -> LogOutResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -384,13 +384,13 @@ var file_src_app_shared_protobuf_user_authentication_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_src_app_shared_protobuf_user_authentication_proto_init() }
-func file_src_app_shared_protobuf_user_authentication_proto_init() {
-	if File_src_app_shared_protobuf_user_authentication_proto != nil {
+func init() { file_src_app_services_user_proto_authentication_proto_init() }
+func file_src_app_services_user_proto_authentication_proto_init() {
+	if File_src_app_services_user_proto_authentication_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SignUpRequest); i {
 			case 0:
 				return &v.state
@@ -402,7 +402,7 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 				return nil
 			}
 		}
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SignUpResponse); i {
 			case 0:
 				return &v.state
@@ -414,7 +414,7 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 				return nil
 			}
 		}
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SignInRequest); i {
 			case 0:
 				return &v.state
@@ -426,7 +426,7 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 				return nil
 			}
 		}
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SignInResponse); i {
 			case 0:
 				return &v.state
@@ -438,7 +438,7 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 				return nil
 			}
 		}
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogOutRequest); i {
 			case 0:
 				return &v.state
@@ -450,7 +450,7 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 				return nil
 			}
 		}
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogOutResponse); i {
 			case 0:
 				return &v.state
@@ -462,7 +462,7 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 				return nil
 			}
 		}
-		file_src_app_shared_protobuf_user_authentication_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_src_app_services_user_proto_authentication_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*User); i {
 			case 0:
 				return &v.state
@@ -479,18 +479,18 @@ func file_src_app_shared_protobuf_user_authentication_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_src_app_shared_protobuf_user_authentication_proto_rawDesc,
+			RawDescriptor: file_src_app_services_user_proto_authentication_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_src_app_shared_protobuf_user_authentication_proto_goTypes,
-		DependencyIndexes: file_src_app_shared_protobuf_user_authentication_proto_depIdxs,
-		MessageInfos:      file_src_app_shared_protobuf_user_authentication_proto_msgTypes,
+		GoTypes:           file_src_app_services_user_proto_authentication_proto_goTypes,
+		DependencyIndexes: file_src_app_services_user_proto_authentication_proto_depIdxs,
+		MessageInfos:      file_src_app_services_user_proto_authentication_proto_msgTypes,
 	}.Build()
-	File_src_app_shared_protobuf_user_authentication_proto = out.File
-	file_src_app_shared_protobuf_user_authentication_proto_rawDesc = nil
-	file_src_app_shared_protobuf_user_authentication_proto_goTypes = nil
-	file_src_app_shared_protobuf_user_authentication_proto_depIdxs = nil
+	File_src_app_services_user_proto_authentication_proto = out.File
+	file_src_app_services_user_proto_authentication_proto_rawDesc = nil
+	file_src_app_services_user_proto_authentication_proto_goTypes = nil
+	file_src_app_services_user_proto_authentication_proto_depIdxs = nil
 }
