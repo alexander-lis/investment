@@ -3,26 +3,20 @@ syntax = "proto3";
 option go_package = "user/authentication";
 import "google/api/annotations.proto";
 
-// Services.
 service Authentication {
-  // Register.
   rpc SignUp (SignUpRequest) returns (SignUpResponse) {
     option (google.api.http) = {
-      post: "/api/v1/user/signup"      
+      post: "/user/v1/authentication/signup"      
     };
   } 
-  
-  // Authenticate.             
   rpc SignIn (SignInRequest) returns (SignInResponse) {
     option (google.api.http) = {
-      post: "/api/v1/user/signin"
+      post: "/user/v1/authentication/signin"
     };
   }                      
-
-  // Logout.
   rpc LogOut (LogOutRequest) returns (LogOutResponse) {
     option (google.api.http) = {
-      get: "/api/v1/user/logout"
+      post: "/user/v1/authentication/logout"
     };
   }
 }

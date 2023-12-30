@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.25.1
-// source: app/protobuf/user/authentication/authentication.proto
+// source: src/app/shared/protobuf/user/authentication.proto
 
 package authentication
 
@@ -22,11 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthenticationClient interface {
-	// Register.
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
-	// Authenticate.
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
-	// Logout.
 	LogOut(ctx context.Context, in *LogOutRequest, opts ...grpc.CallOption) (*LogOutResponse, error)
 }
 
@@ -69,11 +66,8 @@ func (c *authenticationClient) LogOut(ctx context.Context, in *LogOutRequest, op
 // All implementations must embed UnimplementedAuthenticationServer
 // for forward compatibility
 type AuthenticationServer interface {
-	// Register.
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
-	// Authenticate.
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
-	// Logout.
 	LogOut(context.Context, *LogOutRequest) (*LogOutResponse, error)
 	mustEmbedUnimplementedAuthenticationServer()
 }
@@ -179,5 +173,5 @@ var Authentication_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "app/protobuf/user/authentication/authentication.proto",
+	Metadata: "src/app/shared/protobuf/user/authentication.proto",
 }
