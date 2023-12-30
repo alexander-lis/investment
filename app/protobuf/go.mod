@@ -1,4 +1,4 @@
-module github.com/alexander-lis/money/services/user
+module github.com/alexander-lis/money/app/protobuf
 
 go 1.21.5
 

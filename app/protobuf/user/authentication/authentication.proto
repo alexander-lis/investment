@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "authentication/";
+option go_package = "user/authentication";
 import "google/api/annotations.proto";
 
 // Services.
@@ -29,8 +29,10 @@ service Authentication {
 
 // SignUp.
 message SignUpRequest {
+  string name = 1;
 }
 message SignUpResponse {
+  string name = 1;
 }
 
 // SignIn.
