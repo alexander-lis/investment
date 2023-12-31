@@ -6,17 +6,17 @@ import "google/api/annotations.proto";
 service AuthenticationService {
   rpc SignUp (SignUpRequest) returns (SignUpResponse) {
     option (google.api.http) = {
-      post: "/user/v1/authentication/signup"      
+      post: "/api/v1/user/authentication/signup"      
     };
   } 
   rpc SignIn (SignInRequest) returns (SignInResponse) {
     option (google.api.http) = {
-      post: "/user/v1/authentication/signin"
+      post: "/api/v1/user/authentication/signin"
     };
   }                      
   rpc LogOut (LogOutRequest) returns (LogOutResponse) {
     option (google.api.http) = {
-      post: "/user/v1/authentication/logout"
+      post: "/api/v1/user/authentication/logout"
     };
   }
 }

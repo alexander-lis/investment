@@ -2,50 +2,32 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
 	"net/http"
-	"os"
 
 	"github.com/alexander-lis/investment/src/app/shared/protobuf/user/authentication"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/grpclog"
 )
 
-var userServerAdress = fmt.Sprintf("%s:%s", os.Getenv("USER_HOST"), os.Getenv("USER_PORT"))
-
 func main() {
-	fmt.Print("GATEWAY")
-	http.ListenAndServe(":8080", nil)
-}
+	// Создание контекста и маршрутизатора.
+	mux := runtime.NewServeMux()
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
 
-func HTTPProxy(proxyAddr string) {
+	// Регистрация внутренних gRPC сервисов.
+	// Параметры проксирования запросов.
+	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
-	grpcGwMux := runtime.NewServeMux()
-
-	// Подключение к сервису User
-	grpcUserConn, err := grpc.Dial(
-		userServerAdress,
-		grpc.WithInsecure(),
-	)
+	// Регистрация AuthenticationService.
+	err := authentication.RegisterAuthenticationServiceHandlerFromEndpoint(ctx, mux, "localhost:9000", opts)
 	if err != nil {
-		log.Fatalln("Failed to connect to User service", err)
-	}
-	defer grpcUserConn.Close()
-
-	if err := authentication.RegisterAuthenticationServiceHandler(
-		context.Background(),
-		grpcGwMux,
-		grpcUserConn,
-	); err != nil {
-		log.Fatalln("Failed to start HTTP server", err)
+		grpclog.Fatal(err)
 	}
 
-	// Настройка маршрутов с стороны REST
-	mux := http.NewServeMux()
-
-	mux.Handle("/api/", grpcGwMux)
-
-	fmt.Println("starting HTTP server at " + proxyAddr)
-	log.Fatal(http.ListenAndServe(proxyAddr, mux))
+	// Start HTTP server (and proxy calls to gRPC server endpoint)
+	http.ListenAndServe(":8081", mux)
 }
