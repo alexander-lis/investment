@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/alexander-lis/investment/src/app/shared/protobuf/user/authentication"
+	"alexander-lis/investment/shared/protobuf/user/authentication"
 )
 
 type AuthentiationServiceServerImpl struct {

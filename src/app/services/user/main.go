@@ -1,45 +1,36 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net"
-	"os"
-	"user/api"
 
-	"github.com/alexander-lis/investment/src/app/shared/protobuf/user/authentication"
+	"alexander-lis/investment/services/user/api"
+	"alexander-lis/investment/shared/infrastructure"
+	"alexander-lis/investment/shared/protobuf/user/authentication"
+
 	"google.golang.org/grpc"
 )
 
 func main() {
-	ServiceName := "UserService"
-	Host := os.Getenv("HOST")
-	if Host == "" {
-		Host = "localhost"
-	}
-	Port := os.Getenv("PORT")
-	if Port == "" {
-		Port = "9000"
-	}
-	LocalPort := os.Getenv("PORT_LOCAL")
-	if LocalPort == "" {
-		LocalPort = "9000"
-	}
+	// Загрузка конфигурации.
+	infrastructure.BuildConfiguration()
 
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%s", Port))
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
-
+	// gRPC - конфигурация сервера.
 	grpcServer := grpc.NewServer(
 	//grpc.UnaryInterceptor(infrastructure.AccessLogInterceptor),
 	)
 
+	// gRPC - регистрация сервисов.
 	authentication.RegisterAuthenticationServiceServer(grpcServer, &api.AuthentiationServiceServerImpl{})
 
-	log.Printf("%s service started on  %s:%s (localhost:%s)", ServiceName, Host, Port, LocalPort)
-	err = grpcServer.Serve(listener)
+	// gRPC - запуск сервера.
+	listener, err := net.Listen("tcp", infrastructure.ServiceUrl("", infrastructure.Hosts.UserServicePort))
 	if err != nil {
-		log.Fatalf("failed to serve: %s", err)
+		log.Fatal(err)
 	}
+
+	if err := grpcServer.Serve(listener); err != nil {
+		log.Fatal(err)
+	}
+
 }

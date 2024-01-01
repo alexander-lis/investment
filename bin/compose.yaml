@@ -1,0 +1,15 @@
+services:
+  gateway:
+    image: "lisitsynalex/investment/gateway"
+    ports:
+      - "80:80"
+    environment:
+      - USER_SERVICE_HOST=localhost
+      - USER_SERVICE_PORT=9001
+  user:
+    image: "lisitsynalex/investment/services/user"
+    ports:
+      - "9001:9001"
+    environment:
+      - USER_SERVICE_HOST=localhost
+      - USER_SERVICE_PORT=9001
