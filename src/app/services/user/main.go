@@ -11,20 +11,43 @@ import (
 	"google.golang.org/grpc"
 )
 
-func main() {
-	// Загрузка конфигурации.
-	infrastructure.BuildConfiguration()
+var (
+	// Конфигурация конечных точек.
+	appPort = infrastructure.UrlFromEnvOrDefault("", "PORT", "")
+)
 
-	// gRPC - конфигурация сервера.
-	grpcServer := grpc.NewServer(
-	//grpc.UnaryInterceptor(infrastructure.AccessLogInterceptor),
+func main() {
+	// Лог параметров.
+	logEndpoints()
+
+	// Конфигурация сервера
+	grpcServer := configureGrpcServer()
+
+	// Регистрация обработчиков.
+	registerHandlers(grpcServer)
+
+	// Запуск сервера.
+	startGrpcServer(grpcServer)
+}
+
+func logEndpoints() {
+	log.Printf("Listening on %s\n", appPort)
+}
+
+func configureGrpcServer() (grpcServer *grpc.Server) {
+	grpcServer = grpc.NewServer(
+	// 	grpc.UnaryInterceptor(infrastructure.AccessLogInterceptor)
 	)
 
-	// gRPC - регистрация сервисов.
-	authentication.RegisterAuthenticationServiceServer(grpcServer, &api.AuthentiationServiceServerImpl{})
+	return
+}
 
-	// gRPC - запуск сервера.
-	listener, err := net.Listen("tcp", infrastructure.ServiceUrl("", infrastructure.Hosts.UserServicePort))
+func registerHandlers(grpcServer *grpc.Server) {
+	authentication.RegisterAuthenticationServiceServer(grpcServer, &api.AuthentiationServiceServerImpl{})
+}
+
+func startGrpcServer(grpcServer *grpc.Server) {
+	listener, err := net.Listen("tcp", appPort)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,5 +55,4 @@ func main() {
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatal(err)
 	}
-
 }

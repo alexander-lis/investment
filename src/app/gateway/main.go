@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -14,40 +13,53 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+var (
+	// Конфигурация конечных точек.
+	appPort          = infrastructure.UrlFromEnvOrDefault("", "PORT", "")
+	userServiceUrl   = infrastructure.UrlFromEnvOrDefault("USER_SERVICE_HOST", "USER_SERVICE_PORT", "localhost:9001")
+	stockServiceUrl  = infrastructure.UrlFromEnvOrDefault("STOCK_SERVICE_HOST", "STOCK_SERVICE_PORT", "localhost:9002")
+	budgetServiceUrl = infrastructure.UrlFromEnvOrDefault("BUDGET_SERVICE_HOST", "BUDGET_SERVICE_PORT", "localhost:9003")
+)
+
 func main() {
-	// Загрузка конфигурации.
-	infrastructure.BuildConfiguration()
+	// Лог параметров.
+	logEndpoints()
 
 	// Создание контекста.
 	ctx := context.Background()
-	ctx, cancel := context.WithCancel(ctx)
-	defer cancel()
+	ctx, cancelCtx := context.WithCancel(ctx)
+	defer cancelCtx()
 
-	// Параметры проксирования запросов.
-	gwMux := runtime.NewServeMux()
+	// Регистрация сервисов и запуск шлюза.
+	runGateway(
+		registerServices(ctx),
+	)
+}
+
+func logEndpoints() {
+	log.Printf("Listening on %s\n", appPort)
+	log.Printf("UserService URL: %s", userServiceUrl)
+	log.Printf("StockService URL: %s", stockServiceUrl)
+	log.Printf("BudgetService URL: %s", budgetServiceUrl)
+}
+
+func registerServices(ctx context.Context) (gwMux *runtime.ServeMux) {
+	gwMux = runtime.NewServeMux()
 	gwOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
-	// Регистрация AuthenticationService.
-	if err := authentication.RegisterAuthenticationServiceHandlerFromEndpoint(ctx, gwMux, infrastructure.Hosts.UserServiceUrl, gwOpts); err != nil {
+	if err := authentication.RegisterAuthenticationServiceHandlerFromEndpoint(ctx, gwMux, userServiceUrl, gwOpts); err != nil {
 		log.Fatal(err)
 	}
 
-	log.Printf("Running on :%s", infrastructure.Hosts.GatewayPort)
+	return
+}
 
-	// Запуск сервера и передача проксирующеого мультиплексора.
+func runGateway(gwMux *runtime.ServeMux) {
 	mux := http.NewServeMux()
 	mux.Handle("/api/", gwMux)
-	mux.HandleFunc("/ready", isReady)
-	mux.HandleFunc("/live", isAlive)
-	if err := http.ListenAndServe(infrastructure.ServiceUrl("", "80"), mux); err != nil {
+	mux.HandleFunc("/ready", infrastructure.IsReady)
+	mux.HandleFunc("/live", infrastructure.IsAlive)
+	if err := http.ListenAndServe(appPort, mux); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func isReady(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "URL: %s - OK", r.URL.String())
-}
-
-func isAlive(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "URL: %s - OK", r.URL.String())
 }

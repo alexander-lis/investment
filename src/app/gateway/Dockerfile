@@ -8,7 +8,7 @@ RUN go mod download && go mod verify
 
 COPY . .
 
-RUN go build -o /build ./gateway
+RUN CGO_ENABLED=0 GOOS=linux go build -o /build ./gateway
 
 # Run the tests in the container
 FROM build-stage AS run-test-stage

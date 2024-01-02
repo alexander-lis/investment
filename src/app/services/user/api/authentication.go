@@ -13,7 +13,9 @@ type AuthentiationServiceServerImpl struct {
 
 func (o *AuthentiationServiceServerImpl) SignUp(ctx context.Context, in *authentication.SignUpRequest) (*authentication.SignUpResponse, error) {
 	fmt.Printf("Signed up")
-	return &authentication.SignUpResponse{}, nil
+	return &authentication.SignUpResponse{
+		Name: "vasiliy",
+	}, nil
 }
 
 func (o *AuthentiationServiceServerImpl) SignIn(ctx context.Context, in *authentication.SignInRequest) (*authentication.SignInResponse, error) {
