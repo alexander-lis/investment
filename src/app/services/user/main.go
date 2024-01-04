@@ -13,7 +13,7 @@ import (
 
 var (
 	// Конфигурация конечных точек.
-	appPort = infrastructure.UrlFromEnvOrDefault("", "PORT", "")
+	appPort = infrastructure.PortFromEnvOrDefault("PORT")
 )
 
 func main() {

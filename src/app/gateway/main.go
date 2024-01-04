@@ -15,10 +15,10 @@ import (
 
 var (
 	// Конфигурация конечных точек.
-	appPort          = infrastructure.UrlFromEnvOrDefault("", "PORT", "")
-	userServiceUrl   = infrastructure.UrlFromEnvOrDefault("USER_SERVICE_HOST", "USER_SERVICE_PORT", "localhost:9001")
-	stockServiceUrl  = infrastructure.UrlFromEnvOrDefault("STOCK_SERVICE_HOST", "STOCK_SERVICE_PORT", "localhost:9002")
-	budgetServiceUrl = infrastructure.UrlFromEnvOrDefault("BUDGET_SERVICE_HOST", "BUDGET_SERVICE_PORT", "localhost:9003")
+	appPort          = infrastructure.PortFromEnvOrDefault("PORT")
+	userServiceUrl   = infrastructure.UrlFromEnvOrDefault("USER_SERVICE_HOST", "USER_SERVICE_PORT")
+	stockServiceUrl  = infrastructure.UrlFromEnvOrDefault("STOCK_SERVICE_HOST", "STOCK_SERVICE_PORT")
+	budgetServiceUrl = infrastructure.UrlFromEnvOrDefault("BUDGET_SERVICE_HOST", "BUDGET_SERVICE_PORT")
 )
 
 func main() {

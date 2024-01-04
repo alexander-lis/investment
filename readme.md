@@ -1,4 +1,5 @@
 # General
+About this app
 
 # Tips
 ## Development

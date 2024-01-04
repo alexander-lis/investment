@@ -6,12 +6,27 @@ import (
 	"os"
 )
 
-func UrlFromEnvOrDefault(hostEnv, portEnv, fallbackUrl string) string {
-	url := fmt.Sprintf("%s:%s", os.Getenv(hostEnv), os.Getenv(portEnv))
-	if url == "" {
-		url = fallbackUrl
+func UrlFromEnvOrDefault(hostEnv, portEnv string) string {
+	host := os.Getenv(hostEnv)
+	if host == "" {
+		host = "localhost"
 	}
-	return url
+
+	port := os.Getenv(portEnv)
+	if port == "" {
+		port = "80"
+	}
+
+	return fmt.Sprintf("%s:%s", host, port)
+}
+
+func PortFromEnvOrDefault(portEnv string) string {
+	port := os.Getenv(portEnv)
+	if port == "" {
+		port = "80"
+	}
+
+	return fmt.Sprintf(":%s", port)
 }
 
 func IsReady(w http.ResponseWriter, r *http.Request) {
