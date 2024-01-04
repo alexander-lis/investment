@@ -1,5 +1,8 @@
 #!/bin/sh
 
+docker build -f ./src/web/Dockerfile -t lisitsynalex/investment/web ./src/web
+#docker push lisitsynalex/investment/web
+
 docker build -f ./src/app/gateway/Dockerfile -t lisitsynalex/investment/gateway ./src/app
 #docker push lisitsynalex/investment/gateway
 

@@ -1,8 +1,13 @@
+# Run services for localdevelopment.
 services:
+  # Nginx
+  web:
+    image: "lisitsynalex/investment/web"
+    ports:
+      - 80:80
+  # Backend
   gateway:
     image: "lisitsynalex/investment/gateway"
-    ports:
-      - 80:8080
     environment:
       - PORT=8080
       - USER_SERVICE_HOST=user
@@ -11,3 +16,4 @@ services:
     image: "lisitsynalex/investment/services/user"
     environment:
       - PORT=9001
+  # Databases
