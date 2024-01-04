@@ -1,7 +1,7 @@
 # Run services for localdevelopment.
 services:
   # Nginx
-  web:
+  nginx:
     image: "lisitsynalex/investment/web"
     ports:
       - 80:80

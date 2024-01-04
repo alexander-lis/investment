@@ -9,3 +9,5 @@ docker build -f ./src/app/services/user/Dockerfile -t lisitsynalex/investment/se
 #docker push lisitsynalex/investment/user_uservice
 
 docker compose -f ./bin/compose.yaml up -d
+
+sudo docker rmi $(sudo docker images -f "dangling=true" -q)

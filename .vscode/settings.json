@@ -5,7 +5,7 @@
             "--proto_path=${workspaceRoot}",
             "--go_out=${workspaceRoot}/src/app/shared/protobuf",
             "--go-grpc_out=${workspaceRoot}/src/app/shared/protobuf",
-            "--grpc-gateway_out=${workspaceRoot}/src/app/shared/protobuf",
         ]
     }
 }
+//"--grpc-gateway_out=${workspaceRoot}/src/app/shared/protobuf",
