@@ -9,7 +9,8 @@ services:
   gateway:
     image: "lisitsynalex/investment/gateway"
     environment:
-      - USER_SERVICE_HOST=user
+      - PORT=8080
+      - USER_SERVICE_HOST=users
   user:
     image: "lisitsynalex/investment/services/user"
   # Databases

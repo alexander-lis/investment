@@ -14,7 +14,7 @@ func UrlFromEnvOrDefault(hostEnv, portEnv string) string {
 
 	port := os.Getenv(portEnv)
 	if port == "" {
-		port = "80"
+		port = "8080"
 	}
 
 	return fmt.Sprintf("%s:%s", host, port)
@@ -23,7 +23,7 @@ func UrlFromEnvOrDefault(hostEnv, portEnv string) string {
 func PortFromEnvOrDefault(portEnv string) string {
 	port := os.Getenv(portEnv)
 	if port == "" {
-		port = "80"
+		port = "8080"
 	}
 
 	return fmt.Sprintf(":%s", port)
