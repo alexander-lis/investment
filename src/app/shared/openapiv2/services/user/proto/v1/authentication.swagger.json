@@ -35,13 +35,10 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "description": "SignUp.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1SignUpRequest"
-            }
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -84,15 +81,6 @@
     },
     "v1SignInResponse": {
       "type": "object"
-    },
-    "v1SignUpRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      },
-      "description": "SignUp."
     },
     "v1SignUpResponse": {
       "type": "object",

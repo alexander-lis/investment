@@ -1,21 +1,17 @@
 syntax = "proto3";
 
 package services.user.proto.v1;
-option go_package = "services/user/proto/v1";
 
 import "google/api/annotations.proto";
 
+option go_package = "services/user/proto/v1";
+
 service AuthenticationService {
-  rpc SignUp (SignUpRequest) returns (SignUpResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/user/authentication/signup"
-      body: "*"
-    };
-  } 
-  rpc SignIn (SignInRequest) returns (SignInResponse) {
-  }                      
-  rpc LogOut (LogOutRequest) returns (LogOutResponse) {
+  rpc SignUp(SignUpRequest) returns (SignUpResponse) {
+    option (google.api.http) = {post: "/api/v1/user/authentication/signup"};
   }
+  rpc SignIn(SignInRequest) returns (SignInResponse) {}
+  rpc LogOut(LogOutRequest) returns (LogOutResponse) {}
 }
 
 // SignUp.
@@ -27,17 +23,12 @@ message SignUpResponse {
 }
 
 // SignIn.
-message SignInRequest {
-}
-message SignInResponse {
-}
+message SignInRequest {}
+message SignInResponse {}
 
 // LogOut.
-message LogOutRequest {
-}
-message LogOutResponse {
-}
+message LogOutRequest {}
+message LogOutResponse {}
 
 // User.
-message User {
-}
+message User {}

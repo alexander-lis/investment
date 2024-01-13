@@ -1,50 +1,40 @@
 syntax = "proto3";
 
 package services.stock.proto.v1;
+
 option go_package = "services/stock/proto/v1";
 
 service PortfolioService {
-    rpc GetPortfolios (GetPortfoliosRequest) returns (GetPortfoliosResponse) {
-    } 
-    rpc GetPortfolio (GetPortfolioRequest) returns (GetPortfolioResponse) {
-    } 
-  }
-
-/*** Get portfolios list ***/
-message GetPortfoliosRequest {
+  rpc GetPortfolios(GetPortfoliosRequest) returns (GetPortfoliosResponse) {}
+  rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {}
 }
 
+/*** Get portfolios list ***/
+message GetPortfoliosRequest {}
+
 message GetPortfoliosResponse {
-    Portfolio portfolio = 1;
-    repeated Group groups = 2;
-    repeated Sector sectors = 3;
-    repeated Asset assets = 4;
+  Portfolio portfolio = 1;
+  repeated Group groups = 2;
+  repeated Sector sectors = 3;
+  repeated Asset assets = 4;
 }
 
 /*** Get full portfolio structure ***/
 message GetPortfolioRequest {
-    string portfolio_id = 1;
+  string portfolio_id = 1;
 }
 
 message GetPortfolioResponse {
-    Portfolio portfolio = 1;
-    repeated Group groups = 2;
-    repeated Sector sectors = 3;
-    repeated Asset assets = 4;
+  Portfolio portfolio = 1;
+  repeated Group groups = 2;
+  repeated Sector sectors = 3;
+  repeated Asset assets = 4;
 }
 
-message Portfolio {
+message Portfolio {}
 
-}
+message Group {}
 
-message Group {
+message Sector {}
 
-}
-
-message Sector {
-
-}
-
-message Asset {
-    
-}
+message Asset {}
