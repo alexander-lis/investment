@@ -34,7 +34,7 @@ export async function portfolioPageLoader({
   params,
 }: {
   params: {
-    portfolioId: number;
+    portfolioId?: number;
   };
 }): Promise<PortfolioPageData> {
   if (params.portfolioId == 1) {
