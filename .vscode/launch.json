@@ -10,9 +10,6 @@
             "request": "launch",
             "mode": "debug",
             "program": "${workspaceFolder}/src/app/gateway/main.go",
-            "env": {
-                "USER_SERVICE_PORT": "9001"
-            }
         },
         {
             "name": "User Service",
@@ -20,9 +17,13 @@
             "request": "launch",
             "mode": "debug",
             "program": "${workspaceFolder}/src/app/services/user/main.go",
-            "env": {
-                "PORT": "9001"
-            }
+        },
+        {
+            "name": "Stock Service",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/src/app/services/stock/main.go",
         },
     ]
 }

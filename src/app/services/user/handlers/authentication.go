@@ -1,29 +1,29 @@
 package handlers
 
 import (
+	user "alexander-lis/investment/shared/protobuf/services/user/proto/v1"
 	"context"
 	"fmt"
-
-	"alexander-lis/investment/shared/protobuf/user/authentication"
 )
 
-type AuthentiationServiceServerImpl struct {
-	authentication.UnimplementedAuthenticationServiceServer
+type AuthenticationServiceServerImpl struct {
+	user.UnimplementedAuthenticationServiceServer
 }
 
-func (o *AuthentiationServiceServerImpl) SignUp(ctx context.Context, in *authentication.SignUpRequest) (*authentication.SignUpResponse, error) {
+func (o *AuthenticationServiceServerImpl) SignUp(ctx context.Context, in *user.SignUpRequest) (*user.SignUpResponse, error) {
 	fmt.Printf("Signed up")
-	return &authentication.SignUpResponse{
+
+	return &user.SignUpResponse{
 		Name: "vasiliy",
 	}, nil
 }
 
-func (o *AuthentiationServiceServerImpl) SignIn(ctx context.Context, in *authentication.SignInRequest) (*authentication.SignInResponse, error) {
+func (o *AuthenticationServiceServerImpl) SignIn(ctx context.Context, in *user.SignInRequest) (*user.SignInResponse, error) {
 	fmt.Printf("Signed in")
-	return &authentication.SignInResponse{}, nil
+	return &user.SignInResponse{}, nil
 }
 
-func (o *AuthentiationServiceServerImpl) LogOut(ctx context.Context, in *authentication.LogOutRequest) (*authentication.LogOutResponse, error) {
+func (o *AuthenticationServiceServerImpl) LogOut(ctx context.Context, in *user.LogOutRequest) (*user.LogOutResponse, error) {
 	fmt.Printf("Logged out")
-	return &authentication.LogOutResponse{}, nil
+	return &user.LogOutResponse{}, nil
 }

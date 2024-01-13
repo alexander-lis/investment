@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package services.user.proto.v1;
+option go_package = "services/user/proto/v1";
+
+service AccountService {
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+    }
+  }
+
+// SignUp.
+message GetAccountRequest {
+    string name = 1;
+}
+
+message GetAccountResponse {
+    string name = 1;
+}

@@ -6,24 +6,24 @@ import (
 	"os"
 )
 
-func UrlFromEnvOrDefault(hostEnv, portEnv string) string {
+func UrlFromEnvOrDefault(hostEnv, portEnv, defaultHost, defaultPort string) string {
 	host := os.Getenv(hostEnv)
 	if host == "" {
-		host = "localhost"
+		host = defaultHost
 	}
 
 	port := os.Getenv(portEnv)
 	if port == "" {
-		port = "8080"
+		port = defaultPort
 	}
 
 	return fmt.Sprintf("%s:%s", host, port)
 }
 
-func PortFromEnvOrDefault(portEnv string) string {
+func PortFromEnvOrDefault(portEnv, defaultPort string) string {
 	port := os.Getenv(portEnv)
 	if port == "" {
-		port = "8080"
+		port = defaultPort
 	}
 
 	return fmt.Sprintf(":%s", port)

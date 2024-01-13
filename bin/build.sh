@@ -8,6 +8,9 @@ docker build -f ./src/app/gateway/Dockerfile -t lisitsynalex/investment/gateway 
 docker build -f ./src/app/services/user/Dockerfile -t lisitsynalex/investment/services/user ./src/app
 #docker push lisitsynalex/investment/user_uservice
 
+docker build -f ./src/app/services/stock/Dockerfile -t lisitsynalex/investment/services/stock ./src/app
+#docker push lisitsynalex/investment/user_uservice
+
 docker compose -f ./bin/compose.yaml up -d
 
 sudo docker rmi $(sudo docker images -f "dangling=true" -q)

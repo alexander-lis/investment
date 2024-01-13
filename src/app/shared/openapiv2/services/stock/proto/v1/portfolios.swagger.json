@@ -1,0 +1,119 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "services/stock/proto/v1/portfolios.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PortfolioService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Asset": {
+      "type": "object"
+    },
+    "v1GetPortfolioResponse": {
+      "type": "object",
+      "properties": {
+        "portfolio": {
+          "$ref": "#/definitions/v1Portfolio"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Group"
+          }
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Sector"
+          }
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Asset"
+          }
+        }
+      }
+    },
+    "v1GetPortfoliosResponse": {
+      "type": "object",
+      "properties": {
+        "portfolio": {
+          "$ref": "#/definitions/v1Portfolio"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Group"
+          }
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Sector"
+          }
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Asset"
+          }
+        }
+      }
+    },
+    "v1Group": {
+      "type": "object"
+    },
+    "v1Portfolio": {
+      "type": "object"
+    },
+    "v1Sector": {
+      "type": "object"
+    }
+  }
+}
