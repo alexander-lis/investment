@@ -1,29 +1,41 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Root from './layout/Root.tsx'
-import ErrorPage from './pages/ErrorPage.tsx'
-import StockPage from './pages/StockPage.tsx'
-import { initialLoader } from "./data/loaders.tsx"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./layout/Layout.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
+import PortfolioPage from "./pages/PortfolioPage.tsx";
+import PortfoliosPage from "./pages/PortfoliosPage.tsx";
+import BudgetPage from "./pages/BudgetPage.tsx";
+import { layoutPageLoader, portfolioPageLoader, portfoliosPageLoader } from "./data/loaders.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/", 
-    element: <Root></Root>,
+    path: "/",
+    element: <Layout></Layout>,
     errorElement: <ErrorPage></ErrorPage>,
-    loader: initialLoader,
+    loader: layoutPageLoader,
     children: [
       {
-        path: "/stock",
-        element: <StockPage></StockPage>
-      }
-    ]
-  }
-])
+        path: "/budget",
+        element: <BudgetPage></BudgetPage>
+      },
+      {
+        path: "/portfolios",
+        loader: portfoliosPageLoader,
+        element: <PortfoliosPage></PortfoliosPage>
+      },
+      {
+        path: "/portfolios/:portfolioId",
+        loader: portfolioPageLoader,
+        element: <PortfolioPage></PortfolioPage>,
+      },
+    ],
+  },
+]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
