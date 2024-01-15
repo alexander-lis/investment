@@ -10,3 +10,4 @@ plugins:
     out: shared/protobuf
   - plugin: buf.build/grpc-ecosystem/openapiv2
     out: shared/openapiv2
+    

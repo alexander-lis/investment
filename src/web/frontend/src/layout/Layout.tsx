@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Outlet, useLoaderData } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { LayoutPageData, NavigationItem } from "../utils/types-common";
+import { LayoutPageData, NavigationItem } from "../types/types-common";
 import { BanknotesIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
 
 const navigation: NavigationItem[] = [

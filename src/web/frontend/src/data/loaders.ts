@@ -1,9 +1,9 @@
-import { LayoutPageData, User } from "../utils/types-common";
+import { LayoutPageData, User } from "../types/types-common";
 import {
   PortfolioLink,
   PortfolioPageData,
   PortfoliosPageData,
-} from "../utils/types-portfolio";
+} from "../types/types-portfolio";
 
 // Main data.
 export async function layoutPageLoader(): Promise<LayoutPageData> {

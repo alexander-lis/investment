@@ -1,5 +1,5 @@
 import React from "react";
-import { Asset, Sector } from "../../utils/types-portfolio";
+import { Asset, Sector } from "../../types/types-portfolio";
 
 type SectorProps = {
   sector: Sector;

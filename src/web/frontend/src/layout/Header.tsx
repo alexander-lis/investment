@@ -2,7 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { BellIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { classNames } from "../utils/helpers";
-import { User } from "../utils/types-common";
+import { User } from "../types/types-common";
 import { Link } from "react-router-dom";
 
 type HeaderProps = {

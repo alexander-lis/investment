@@ -2,3 +2,8 @@
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+
+// Set server url.
+export function getUrl(path: string) {
+
+}

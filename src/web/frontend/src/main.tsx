@@ -7,7 +7,7 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import PortfolioPage from "./pages/PortfolioPage.tsx";
 import PortfoliosPage from "./pages/PortfoliosPage.tsx";
 import BudgetPage from "./pages/BudgetPage.tsx";
-import { layoutPageLoader, portfolioPageLoader, portfoliosPageLoader } from "./data/loaders.tsx";
+import { layoutPageLoader, portfolioPageLoader, portfoliosPageLoader } from "./data/loaders.ts";
 
 const router = createBrowserRouter([
   {

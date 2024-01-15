@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { PortfolioPageData } from "../utils/types-portfolio";
+import { PortfolioPageData } from "../types/types-portfolio";
 import { format } from "date-fns";
 import GroupNode from "../components/portfolio/GroupNode";
 

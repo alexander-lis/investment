@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { classNames } from "../utils/helpers";
-import { NavigationItem } from "../utils/types-common";
+import { NavigationItem } from "../types/types-common";
 
 type SidebarProps = {
   navigation: NavigationItem[];

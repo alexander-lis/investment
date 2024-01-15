@@ -1,5 +1,5 @@
 import React from "react";
-import { Asset, Group, Sector } from "../../utils/types-portfolio";
+import { Asset, Group, Sector } from "../../types/types-portfolio";
 import SectorNode from "./SectorNode";
 
 type GroupProps = {

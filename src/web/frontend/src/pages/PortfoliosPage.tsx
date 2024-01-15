@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { PortfoliosPageData } from "../utils/types-portfolio";
+import { PortfoliosPageData } from "../types/types-portfolio";
 
 export default function PortfoliosPage() {
   const { portfolios } = useLoaderData() as PortfoliosPageData;
