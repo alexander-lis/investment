@@ -1,6 +1,9 @@
 package main
 
 import (
+	"alexander-lis/investment/services/stock/handlers"
+	"alexander-lis/investment/services/stock/persistence"
+	portfolio "alexander-lis/investment/shared/protobuf/services/stock/proto/v1"
 	"log"
 	"net"
 
@@ -11,7 +14,8 @@ import (
 
 var (
 	// Конфигурация конечных точек.
-	appPort = infrastructure.PortFromEnvOrDefault("PORT", "9093")
+	appPort  = infrastructure.PortFromEnvOrDefault("PORT", "9093")
+	mongoUrl = infrastructure.MongoUrlFromEnv()
 )
 
 func main() {
@@ -41,6 +45,11 @@ func configureGrpcServer() (grpcServer *grpc.Server) {
 }
 
 func registerHandlers(grpcServer *grpc.Server) {
+	portfolio.RegisterPortfolioServiceServer(grpcServer, &handlers.PortfolioServiceServerImpl{
+		PortfolioRepository: persistence.PortfolioRepository{
+			MongoRepository: infrastructure.MongoRepository{MongoUrl: mongoUrl},
+		},
+	})
 }
 
 func startGrpcServer(grpcServer *grpc.Server) {

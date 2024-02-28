@@ -15,7 +15,60 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/api/v1/stock/portfolios": {
+      "get": {
+        "operationId": "PortfolioService_GetPortfolios",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPortfoliosResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    },
+    "/api/v1/stock/portfolios/{PortfolioId}": {
+      "get": {
+        "operationId": "PortfolioService_GetPortfolio",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPortfolioResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "PortfolioId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "protobufAny": {
       "type": "object",
@@ -51,24 +104,24 @@
     "v1GetPortfolioResponse": {
       "type": "object",
       "properties": {
-        "portfolio": {
+        "Portfolio": {
           "$ref": "#/definitions/v1Portfolio"
         },
-        "groups": {
+        "Groups": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1Group"
           }
         },
-        "sectors": {
+        "Sectors": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1Sector"
           }
         },
-        "assets": {
+        "Assets": {
           "type": "array",
           "items": {
             "type": "object",
@@ -80,28 +133,11 @@
     "v1GetPortfoliosResponse": {
       "type": "object",
       "properties": {
-        "portfolio": {
-          "$ref": "#/definitions/v1Portfolio"
-        },
-        "groups": {
+        "Portfolios": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1Group"
-          }
-        },
-        "sectors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Sector"
-          }
-        },
-        "assets": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Asset"
+            "$ref": "#/definitions/v1Portfolio"
           }
         }
       }
@@ -110,7 +146,13 @@
       "type": "object"
     },
     "v1Portfolio": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        }
+      },
+      "title": "Types"
     },
     "v1Sector": {
       "type": "object"

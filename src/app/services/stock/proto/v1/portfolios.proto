@@ -2,36 +2,42 @@ syntax = "proto3";
 
 package services.stock.proto.v1;
 
+import "google/api/annotations.proto";
+
 option go_package = "services/stock/proto/v1";
 
 service PortfolioService {
-  rpc GetPortfolios(GetPortfoliosRequest) returns (GetPortfoliosResponse) {}
-  rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {}
+  rpc GetPortfolios(GetPortfoliosRequest) returns (GetPortfoliosResponse) {
+    option (google.api.http) = {get: "/api/v1/stock/portfolios"};
+  }
+  rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {
+    option (google.api.http) = {get: "/api/v1/stock/portfolios/{PortfolioId}"};
+  }
 }
 
-/*** Get portfolios list ***/
+/* Get portfolios list */
 message GetPortfoliosRequest {}
 
 message GetPortfoliosResponse {
-  Portfolio portfolio = 1;
-  repeated Group groups = 2;
-  repeated Sector sectors = 3;
-  repeated Asset assets = 4;
+  repeated Portfolio Portfolios = 1;
 }
 
-/*** Get full portfolio structure ***/
+/* Get portfolio */
 message GetPortfolioRequest {
-  string portfolio_id = 1;
+  string PortfolioId = 1;
 }
 
 message GetPortfolioResponse {
-  Portfolio portfolio = 1;
-  repeated Group groups = 2;
-  repeated Sector sectors = 3;
-  repeated Asset assets = 4;
+  Portfolio Portfolio = 1;
+  repeated Group Groups = 2;
+  repeated Sector Sectors = 3;
+  repeated Asset Assets = 4;
 }
 
-message Portfolio {}
+/* Types */
+message Portfolio {
+  string Name = 1;
+}
 
 message Group {}
 
