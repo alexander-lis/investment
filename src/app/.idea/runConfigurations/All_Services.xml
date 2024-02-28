@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All Services" type="CompoundRunConfigurationType">
+    <toRun name="Gateway" type="GoApplicationRunConfiguration" />
+    <toRun name="StockService" type="GoApplicationRunConfiguration" />
+    <toRun name="UserService" type="GoApplicationRunConfiguration" />
+    <method v="2" />
+  </configuration>
+</component>
