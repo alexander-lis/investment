@@ -13,10 +13,11 @@ type Entity interface {
 }
 
 type Repository[TEntity Entity] interface {
-	CreateOrUpdate(entity *TEntity)
-	Read(id string) *TEntity
-	ReadAll() []*TEntity
-	Delete(id string)
+	Create(entity *TEntity) (string, error)
+	Update(entity *TEntity) error
+	Read(id string) (TEntity, error)
+	ReadAll() ([]TEntity, error)
+	Delete(id string) error
 }
 
 /* MongoDB implementation */

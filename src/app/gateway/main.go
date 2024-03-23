@@ -50,6 +50,9 @@ func getGatewayMux(ctx context.Context) (gwMux *runtime.ServeMux) {
 			MarshalOptions: protojson.MarshalOptions{
 				UseProtoNames: true,
 			},
+			UnmarshalOptions: protojson.UnmarshalOptions{
+				DiscardUnknown: true,
+			},
 		}))
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 	stock.RegisterPortfolioServiceHandlerFromEndpoint(ctx, gwMux, stockServiceUrl, opts)

@@ -149,8 +149,8 @@
     "v1CreatePortfolioResponse": {
       "type": "object",
       "properties": {
-        "Id": {
-          "type": "string"
+        "Portfolio": {
+          "$ref": "#/definitions/v1Portfolio"
         }
       }
     },
@@ -201,7 +201,16 @@
     "v1Portfolio": {
       "type": "object",
       "properties": {
+        "Id": {
+          "type": "string"
+        },
         "Name": {
+          "type": "string"
+        },
+        "From": {
+          "type": "string"
+        },
+        "To": {
           "type": "string"
         }
       },

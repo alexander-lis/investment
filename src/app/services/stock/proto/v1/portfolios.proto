@@ -17,6 +17,12 @@ service PortfolioService {
   rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {
     option (google.api.http) = {get: "/api/v1/stock/portfolios/{PortfolioId}"};
   }
+//  rpc UpdatePortfolio(UpdatePortfolioRequest) returns (UpdatePortfolioResponse) {
+//    option (google.api.http) = {put: "/api/v1/stock/portfolios/{PortfolioId}", body: "*"};
+//  }
+//  rpc DeletePortfolio(DeletePortfolioRequest) returns (DeletePortfolioResponse) {
+//    option (google.api.http) = {delete: "/api/v1/stock/portfolios/{PortfolioId}"};
+//  }
 }
 
 /* Create portfolio */
@@ -27,7 +33,7 @@ message CreatePortfolioRequest {
 }
 
 message CreatePortfolioResponse {
-  string Id = 1;
+  Portfolio Portfolio = 1;
 }
 
 /* Get portfolios */
@@ -52,7 +58,10 @@ message GetPortfolioResponse {
 
 /* Types */
 message Portfolio {
-  string Name = 1;
+  string Id = 1;
+  string Name = 2;
+  string From = 3;
+  string To = 4;
 }
 
 message Group {}
