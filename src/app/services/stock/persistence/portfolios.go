@@ -1,19 +1,23 @@
 package persistence
 
 import (
-	"alexander-lis/investment/shared/infrastructure"
 	portfolio "alexander-lis/investment/shared/protobuf/services/stock/proto/v1"
+	"go.mongodb.org/mongo-driver/mongo"
 	"time"
 )
 
+const collection string = "portfolios"
+
 // Portfolio entity.
 type Portfolio struct {
-	Name     string
-	From, To time.Time
+	Id   string    `bson:"id,omitempty"`
+	Name string    `bson:"name,omitempty"`
+	From time.Time `bson:"from,omitempty"`
+	To   time.Time `bson:"to,omitempty"`
 }
 
-// PortfoioToDto maps entity to dto.
-func PortfoioToDto(p *Portfolio) *portfolio.Portfolio {
+// PortfolioToDto maps entity to dto.
+func PortfolioToDto(p *Portfolio) *portfolio.Portfolio {
 	return &portfolio.Portfolio{
 		Name: p.Name,
 	}
@@ -21,11 +25,11 @@ func PortfoioToDto(p *Portfolio) *portfolio.Portfolio {
 
 // PortfolioRepository for MongoDB.
 type PortfolioRepository struct {
-	infrastructure.MongoRepository
+	Client *mongo.Client
 }
 
 func (p PortfolioRepository) CreateOrUpdate(entity *Portfolio) {
-	//TODO implement me
+
 	panic("implement me")
 }
 
