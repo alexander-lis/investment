@@ -36,6 +36,36 @@
         "tags": [
           "PortfolioService"
         ]
+      },
+      "post": {
+        "operationId": "PortfolioService_CreatePortfolio",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreatePortfolioResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreatePortfolioRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PortfolioService"
+        ]
       }
     },
     "/api/v1/stock/portfolios/{PortfolioId}": {
@@ -100,6 +130,29 @@
     },
     "v1Asset": {
       "type": "object"
+    },
+    "v1CreatePortfolioRequest": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "From": {
+          "type": "string"
+        },
+        "To": {
+          "type": "string"
+        }
+      },
+      "title": "Create portfolio"
+    },
+    "v1CreatePortfolioResponse": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      }
     },
     "v1GetPortfolioResponse": {
       "type": "object",

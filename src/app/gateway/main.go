@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"google.golang.org/protobuf/encoding/protojson"
 	"log"
 	"net/http"
 
@@ -44,7 +45,12 @@ func logEndpoints() {
 }
 
 func getGatewayMux(ctx context.Context) (gwMux *runtime.ServeMux) {
-	gwMux = runtime.NewServeMux()
+	gwMux = runtime.NewServeMux(
+		runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.JSONPb{
+			MarshalOptions: protojson.MarshalOptions{
+				UseProtoNames: true,
+			},
+		}))
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 	stock.RegisterPortfolioServiceHandlerFromEndpoint(ctx, gwMux, stockServiceUrl, opts)
 	user.RegisterAuthenticationServiceHandlerFromEndpoint(ctx, gwMux, userServiceUrl, opts)

@@ -19,14 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PortfolioService_GetPortfolios_FullMethodName = "/services.stock.proto.v1.PortfolioService/GetPortfolios"
-	PortfolioService_GetPortfolio_FullMethodName  = "/services.stock.proto.v1.PortfolioService/GetPortfolio"
+	PortfolioService_CreatePortfolio_FullMethodName = "/services.stock.proto.v1.PortfolioService/CreatePortfolio"
+	PortfolioService_GetPortfolios_FullMethodName   = "/services.stock.proto.v1.PortfolioService/GetPortfolios"
+	PortfolioService_GetPortfolio_FullMethodName    = "/services.stock.proto.v1.PortfolioService/GetPortfolio"
 )
 
 // PortfolioServiceClient is the client API for PortfolioService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PortfolioServiceClient interface {
+	CreatePortfolio(ctx context.Context, in *CreatePortfolioRequest, opts ...grpc.CallOption) (*CreatePortfolioResponse, error)
 	GetPortfolios(ctx context.Context, in *GetPortfoliosRequest, opts ...grpc.CallOption) (*GetPortfoliosResponse, error)
 	GetPortfolio(ctx context.Context, in *GetPortfolioRequest, opts ...grpc.CallOption) (*GetPortfolioResponse, error)
 }
@@ -37,6 +39,15 @@ type portfolioServiceClient struct {
 
 func NewPortfolioServiceClient(cc grpc.ClientConnInterface) PortfolioServiceClient {
 	return &portfolioServiceClient{cc}
+}
+
+func (c *portfolioServiceClient) CreatePortfolio(ctx context.Context, in *CreatePortfolioRequest, opts ...grpc.CallOption) (*CreatePortfolioResponse, error) {
+	out := new(CreatePortfolioResponse)
+	err := c.cc.Invoke(ctx, PortfolioService_CreatePortfolio_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *portfolioServiceClient) GetPortfolios(ctx context.Context, in *GetPortfoliosRequest, opts ...grpc.CallOption) (*GetPortfoliosResponse, error) {
@@ -61,6 +72,7 @@ func (c *portfolioServiceClient) GetPortfolio(ctx context.Context, in *GetPortfo
 // All implementations must embed UnimplementedPortfolioServiceServer
 // for forward compatibility
 type PortfolioServiceServer interface {
+	CreatePortfolio(context.Context, *CreatePortfolioRequest) (*CreatePortfolioResponse, error)
 	GetPortfolios(context.Context, *GetPortfoliosRequest) (*GetPortfoliosResponse, error)
 	GetPortfolio(context.Context, *GetPortfolioRequest) (*GetPortfolioResponse, error)
 	mustEmbedUnimplementedPortfolioServiceServer()
@@ -70,6 +82,9 @@ type PortfolioServiceServer interface {
 type UnimplementedPortfolioServiceServer struct {
 }
 
+func (UnimplementedPortfolioServiceServer) CreatePortfolio(context.Context, *CreatePortfolioRequest) (*CreatePortfolioResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePortfolio not implemented")
+}
 func (UnimplementedPortfolioServiceServer) GetPortfolios(context.Context, *GetPortfoliosRequest) (*GetPortfoliosResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPortfolios not implemented")
 }
@@ -87,6 +102,24 @@ type UnsafePortfolioServiceServer interface {
 
 func RegisterPortfolioServiceServer(s grpc.ServiceRegistrar, srv PortfolioServiceServer) {
 	s.RegisterService(&PortfolioService_ServiceDesc, srv)
+}
+
+func _PortfolioService_CreatePortfolio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePortfolioRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PortfolioServiceServer).CreatePortfolio(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PortfolioService_CreatePortfolio_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PortfolioServiceServer).CreatePortfolio(ctx, req.(*CreatePortfolioRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _PortfolioService_GetPortfolios_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -132,6 +165,10 @@ var PortfolioService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "services.stock.proto.v1.PortfolioService",
 	HandlerType: (*PortfolioServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreatePortfolio",
+			Handler:    _PortfolioService_CreatePortfolio_Handler,
+		},
 		{
 			MethodName: "GetPortfolios",
 			Handler:    _PortfolioService_GetPortfolios_Handler,

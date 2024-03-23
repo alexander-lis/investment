@@ -37,6 +37,6 @@ func IsAlive(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "URL: %s - OK", r.URL.String())
 }
 
-func MongoUrlFromEnv() string {
-	return os.Getenv("MONGO_URL")
+func MongoUriFromEnv() string {
+	return os.Getenv("MONGO_URI")
 }

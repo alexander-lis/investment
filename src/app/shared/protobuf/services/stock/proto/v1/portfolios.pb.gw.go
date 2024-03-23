@@ -31,6 +31,32 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
+func request_PortfolioService_CreatePortfolio_0(ctx context.Context, marshaler runtime.Marshaler, client PortfolioServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreatePortfolioRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.CreatePortfolio(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_PortfolioService_CreatePortfolio_0(ctx context.Context, marshaler runtime.Marshaler, server PortfolioServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreatePortfolioRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.CreatePortfolio(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_PortfolioService_GetPortfolios_0(ctx context.Context, marshaler runtime.Marshaler, client PortfolioServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetPortfoliosRequest
 	var metadata runtime.ServerMetadata
@@ -106,6 +132,31 @@ func local_request_PortfolioService_GetPortfolio_0(ctx context.Context, marshale
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPortfolioServiceHandlerFromEndpoint instead.
 func RegisterPortfolioServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server PortfolioServiceServer) error {
+
+	mux.Handle("POST", pattern_PortfolioService_CreatePortfolio_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/services.stock.proto.v1.PortfolioService/CreatePortfolio", runtime.WithHTTPPathPattern("/api/v1/stock/portfolios"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PortfolioService_CreatePortfolio_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_PortfolioService_CreatePortfolio_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
 
 	mux.Handle("GET", pattern_PortfolioService_GetPortfolios_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -198,6 +249,28 @@ func RegisterPortfolioServiceHandler(ctx context.Context, mux *runtime.ServeMux,
 // "PortfolioServiceClient" to call the correct interceptors.
 func RegisterPortfolioServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client PortfolioServiceClient) error {
 
+	mux.Handle("POST", pattern_PortfolioService_CreatePortfolio_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/services.stock.proto.v1.PortfolioService/CreatePortfolio", runtime.WithHTTPPathPattern("/api/v1/stock/portfolios"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PortfolioService_CreatePortfolio_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_PortfolioService_CreatePortfolio_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_PortfolioService_GetPortfolios_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -246,12 +319,16 @@ func RegisterPortfolioServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
+	pattern_PortfolioService_CreatePortfolio_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "stock", "portfolios"}, ""))
+
 	pattern_PortfolioService_GetPortfolios_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "stock", "portfolios"}, ""))
 
 	pattern_PortfolioService_GetPortfolio_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "stock", "portfolios", "PortfolioId"}, ""))
 )
 
 var (
+	forward_PortfolioService_CreatePortfolio_0 = runtime.ForwardResponseMessage
+
 	forward_PortfolioService_GetPortfolios_0 = runtime.ForwardResponseMessage
 
 	forward_PortfolioService_GetPortfolio_0 = runtime.ForwardResponseMessage

@@ -1,36 +1,36 @@
 package persistence
 
 import (
-	portfolio "alexander-lis/investment/shared/protobuf/services/stock/proto/v1"
+	"context"
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"time"
 )
 
-const collection string = "portfolios"
+const portfoliosCollection string = "portfolios"
 
 // Portfolio entity.
 type Portfolio struct {
-	Id   string    `bson:"id,omitempty"`
-	Name string    `bson:"name,omitempty"`
-	From time.Time `bson:"from,omitempty"`
-	To   time.Time `bson:"to,omitempty"`
+	Id   primitive.ObjectID `bson:"_id"`
+	Name string             `bson:"name,omitempty"`
+	From time.Time          `bson:"from,omitempty"`
+	To   time.Time          `bson:"to,omitempty"`
 }
 
-// PortfolioToDto maps entity to dto.
-func PortfolioToDto(p *Portfolio) *portfolio.Portfolio {
-	return &portfolio.Portfolio{
-		Name: p.Name,
-	}
-}
-
-// PortfolioRepository for MongoDB.
+// PortfolioRepository with MongoDB.
 type PortfolioRepository struct {
-	Client *mongo.Client
+	Context  context.Context
+	Database *mongo.Database
 }
 
 func (p PortfolioRepository) CreateOrUpdate(entity *Portfolio) {
-
-	panic("implement me")
+	coll := p.Database.Collection(portfoliosCollection)
+	result, err := coll.InsertOne(p.Context, entity)
+	if err != nil {
+		fmt.Print(err)
+	}
+	fmt.Print(result)
 }
 
 func (p PortfolioRepository) Read(id string) *Portfolio {
@@ -39,6 +39,29 @@ func (p PortfolioRepository) Read(id string) *Portfolio {
 }
 
 func (p PortfolioRepository) ReadAll() []*Portfolio {
+	//coll := p.Database.Collection(portfoliosCollection)
+	//
+	//filter := bson.D{}
+	//
+	//cursor, err := coll.Find(p.Context, filter)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//
+	//var results []Portfolio
+	//if err = cursor.All(p.Context, &results); err != nil {
+	//	panic(err)
+	//}
+	//
+	//// Prints the results of the find operation as structs
+	//for _, result := range results {
+	//	cursor.Decode(&result)
+	//	output, err := json.MarshalIndent(result, "", "    ")
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//	fmt.Printf("%s\n", output)
+	//}
 	portfolios := []*Portfolio{
 		{
 			Name: "First",

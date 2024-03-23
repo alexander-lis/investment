@@ -2,6 +2,9 @@
   <configuration default="false" name="StockService" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="app" />
     <working_directory value="$PROJECT_DIR$" />
+    <envs>
+      <env name="MONGO_URI" value="mongodb://root:example@localhost:27017/?retryWrites=true&amp;w=majority" />
+    </envs>
     <kind value="PACKAGE" />
     <package value="alexander-lis/investment/services/stock" />
     <directory value="$PROJECT_DIR$" />

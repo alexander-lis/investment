@@ -3,10 +3,14 @@ syntax = "proto3";
 package services.stock.proto.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "services/stock/proto/v1";
 
 service PortfolioService {
+  rpc CreatePortfolio(CreatePortfolioRequest) returns (CreatePortfolioResponse) {
+    option (google.api.http) = {post: "/api/v1/stock/portfolios", body: "*" };
+  }
   rpc GetPortfolios(GetPortfoliosRequest) returns (GetPortfoliosResponse) {
     option (google.api.http) = {get: "/api/v1/stock/portfolios"};
   }
@@ -15,7 +19,18 @@ service PortfolioService {
   }
 }
 
-/* Get portfolios list */
+/* Create portfolio */
+message CreatePortfolioRequest {
+  string Name = 1;
+  string From = 2;
+  string To = 3;
+}
+
+message CreatePortfolioResponse {
+  string Id = 1;
+}
+
+/* Get portfolios */
 message GetPortfoliosRequest {}
 
 message GetPortfoliosResponse {
@@ -33,6 +48,7 @@ message GetPortfolioResponse {
   repeated Sector Sectors = 3;
   repeated Asset Assets = 4;
 }
+
 
 /* Types */
 message Portfolio {
