@@ -2,12 +2,13 @@ version: v1
 managed:
   enabled: true
 plugins:
+  # Go types
   - plugin: buf.build/protocolbuffers/go
     out: shared/protobuf
+  # Go client and server stubs
   - plugin: buf.build/grpc/go
     out: shared/protobuf
+  # Gateway
   - plugin: buf.build/grpc-ecosystem/gateway
+    opt: generate_unbound_methods=true
     out: shared/protobuf
-  - plugin: buf.build/grpc-ecosystem/openapiv2
-    out: shared/openapiv2
-    

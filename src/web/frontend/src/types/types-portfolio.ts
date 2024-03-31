@@ -13,7 +13,7 @@ export type PortfolioPageData = {
 
 // Ссылки на инвестиционный портфель.
 export type PortfolioLink = {
-    id: number,
+    id: string,
     name: string,
 }
 

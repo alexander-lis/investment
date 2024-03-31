@@ -11,12 +11,16 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@bufbuild/protobuf": "^1.8.0",
+    "@connectrpc/connect": "^1.4.0",
+    "@connectrpc/connect-web": "^1.4.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
     "date-fns": "^3.1.0",
     "grpc-web": "^1.5.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "openapi-fetch": "^0.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
@@ -33,9 +37,10 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "openapi-typescript": "^6.7.5",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.4.3",
     "vite": "^5.0.8",
     "vitest": "^1.1.3"
   }
