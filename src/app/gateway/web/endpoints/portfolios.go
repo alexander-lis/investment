@@ -1,4 +1,4 @@
-package web
+package handlers
 
 import (
 	"alexander-lis/investment/shared/infrastructure"
@@ -7,11 +7,6 @@ import (
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
-
-// Data Transfer Objects.
-type PortfolioDto struct {
-	Name string `json:"name"`
-}
 
 // RegisterPortfolios registers portfolios endpoints.
 func RegisterPortfolios(grpcClients *infrastructure.GrpcServiceClients, e *echo.Echo) {
@@ -24,7 +19,13 @@ func RegisterPortfolios(grpcClients *infrastructure.GrpcServiceClients, e *echo.
 
 func createPortfolio(grpcClients *infrastructure.GrpcServiceClients) func(c echo.Context) error {
 	return func(c echo.Context) error {
-		return c.String(http.StatusOK, "")
+		ctx := c.Request().Context()
+		response, error := grpcClients.PortfolioServiceClient.CreatePortfolio(ctx, &stock.CreatePortfolioRequest{})
+		if error != nil {
+			return c.String(http.StatusInternalServerError, error.Error())
+		}
+
+		return c.String(http.StatusOK, fmt.Sprintf("%s", response))
 	}
 }
 
@@ -42,7 +43,15 @@ func getPortfolios(grpcClients *infrastructure.GrpcServiceClients) func(c echo.C
 
 func getPortfolio(grpcClients *infrastructure.GrpcServiceClients) func(c echo.Context) error {
 	return func(c echo.Context) error {
-		return c.String(http.StatusOK, "")
+		id := c.Param("id")
+		ctx := c.Request().Context()
+
+		response, error := grpcClients.PortfolioServiceClient.GetPortfolio(ctx, &stock.GetPortfolioRequest{PortfolioId: id})
+		if error != nil {
+			return c.String(http.StatusInternalServerError, error.Error())
+		}
+
+		return c.String(http.StatusOK, fmt.Sprintf("%s", response))
 	}
 }
 

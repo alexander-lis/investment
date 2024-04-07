@@ -11,7 +11,6 @@ import (
 
 const portfoliosCollection string = "portfolios"
 
-// Portfolio entity.
 type Portfolio struct {
 	Id   string    `bson:"_id,omitempty"`
 	Name string    `bson:"name,omitempty"`
@@ -19,7 +18,6 @@ type Portfolio struct {
 	To   time.Time `bson:"to,omitempty"`
 }
 
-// PortfolioRepository with MongoDB.
 type PortfolioRepository struct {
 	Context  context.Context
 	Database *mongo.Database
@@ -45,9 +43,23 @@ func (p PortfolioRepository) Update(entity *Portfolio) error {
 	return nil
 }
 
-func (p PortfolioRepository) Read(id string) (Portfolio, error) {
-	//TODO implement me
-	panic("implement me")
+func (p PortfolioRepository) Read(idStr string) (*Portfolio, error) {
+	coll := p.Database.Collection(portfoliosCollection)
+
+	id, err := primitive.ObjectIDFromHex(idStr)
+	if err != nil {
+		return nil, err
+	}
+
+	filter := bson.D{{"_id", id}}
+
+	var portfolio Portfolio
+	err = coll.FindOne(p.Context, filter).Decode(&portfolio)
+	if err != nil {
+		return nil, err
+	}
+
+	return &portfolio, nil
 }
 
 func (p PortfolioRepository) ReadAll() ([]Portfolio, error) {
