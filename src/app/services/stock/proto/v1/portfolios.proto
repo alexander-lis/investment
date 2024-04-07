@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 package services.stock.proto.v1;
+import "google/protobuf/timestamp.proto";
+
 
 option go_package = "services/stock/proto/v1/";
 
@@ -8,12 +10,8 @@ service PortfolioService {
   rpc CreatePortfolio(CreatePortfolioRequest) returns (CreatePortfolioResponse) {}
   rpc GetPortfolios(GetPortfoliosRequest) returns (GetPortfoliosResponse) {}
   rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {}
-//  rpc UpdatePortfolio(UpdatePortfolioRequest) returns (UpdatePortfolioResponse) {
-//    option (google.api.http) = {put: "/api/v1/stock/portfolios/{PortfolioId}", body: "*"};
-//  }
-//  rpc DeletePortfolio(DeletePortfolioRequest) returns (DeletePortfolioResponse) {
-//    option (google.api.http) = {delete: "/api/v1/stock/portfolios/{PortfolioId}"};
-//  }
+  rpc UpdatePortfolio(UpdatePortfolioRequest) returns (Empty) {}
+  rpc DeletePortfolio(DeletePortfolioRequest) returns (Empty) {}
 }
 
 /* Create portfolio */
@@ -46,6 +44,15 @@ message GetPortfolioResponse {
   repeated Asset Assets = 4;
 }
 
+/* Update Portfolio */
+message UpdatePortfolioRequest {
+  Portfolio Portfolio = 1;
+}
+
+/* Delete Portfolio */
+message  DeletePortfolioRequest {
+  string PortfolioId = 1;
+}
 
 /* Types */
 message Portfolio {
@@ -60,3 +67,7 @@ message Group {}
 message Sector {}
 
 message Asset {}
+
+/* Util types */
+message  Empty {
+}

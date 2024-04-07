@@ -1,7 +1,7 @@
 package main
 
 import (
-	"alexander-lis/investment/gateway/web"
+	"alexander-lis/investment/gateway/web/endpoints"
 	"alexander-lis/investment/shared/infrastructure"
 	stock "alexander-lis/investment/shared/protobuf/services/stock/proto/v1"
 	user "alexander-lis/investment/shared/protobuf/services/user/proto/v1"
@@ -75,6 +75,6 @@ func registerGrpcClients(ctx context.Context) *infrastructure.GrpcServiceClients
 
 func runServer(grpcClients *infrastructure.GrpcServiceClients) {
 	e := echo.New()
-	web.RegisterPortfolios(grpcClients, e)
+	endpoints.RegisterPortfolios(grpcClients, e)
 	e.Logger.Fatal(e.Start(config.AppPort))
 }

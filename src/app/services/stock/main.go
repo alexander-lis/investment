@@ -2,7 +2,7 @@ package main
 
 import (
 	"alexander-lis/investment/services/stock/handlers"
-	"alexander-lis/investment/services/stock/persistence"
+	"alexander-lis/investment/services/stock/repositories"
 	"alexander-lis/investment/shared/infrastructure"
 	portfolio "alexander-lis/investment/shared/protobuf/services/stock/proto/v1"
 	"context"
@@ -54,7 +54,7 @@ func registerHandlers(grpcServer *grpc.Server, ctx context.Context) {
 	mongoClient := infrastructure.GetMongoClient(mongoUri)
 
 	portfolio.RegisterPortfolioServiceServer(grpcServer, &handlers.PortfolioServiceServerImpl{
-		PortfolioRepository: persistence.PortfolioRepository{
+		PortfolioRepository: repositories.PortfolioRepository{
 			Database: mongoClient.Database("stock"),
 		},
 	})

@@ -22,6 +22,8 @@ const (
 	PortfolioService_CreatePortfolio_FullMethodName = "/services.stock.proto.v1.PortfolioService/CreatePortfolio"
 	PortfolioService_GetPortfolios_FullMethodName   = "/services.stock.proto.v1.PortfolioService/GetPortfolios"
 	PortfolioService_GetPortfolio_FullMethodName    = "/services.stock.proto.v1.PortfolioService/GetPortfolio"
+	PortfolioService_UpdatePortfolio_FullMethodName = "/services.stock.proto.v1.PortfolioService/UpdatePortfolio"
+	PortfolioService_DeletePortfolio_FullMethodName = "/services.stock.proto.v1.PortfolioService/DeletePortfolio"
 )
 
 // PortfolioServiceClient is the client API for PortfolioService service.
@@ -31,6 +33,8 @@ type PortfolioServiceClient interface {
 	CreatePortfolio(ctx context.Context, in *CreatePortfolioRequest, opts ...grpc.CallOption) (*CreatePortfolioResponse, error)
 	GetPortfolios(ctx context.Context, in *GetPortfoliosRequest, opts ...grpc.CallOption) (*GetPortfoliosResponse, error)
 	GetPortfolio(ctx context.Context, in *GetPortfolioRequest, opts ...grpc.CallOption) (*GetPortfolioResponse, error)
+	UpdatePortfolio(ctx context.Context, in *UpdatePortfolioRequest, opts ...grpc.CallOption) (*Empty, error)
+	DeletePortfolio(ctx context.Context, in *DeletePortfolioRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type portfolioServiceClient struct {
@@ -68,6 +72,24 @@ func (c *portfolioServiceClient) GetPortfolio(ctx context.Context, in *GetPortfo
 	return out, nil
 }
 
+func (c *portfolioServiceClient) UpdatePortfolio(ctx context.Context, in *UpdatePortfolioRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, PortfolioService_UpdatePortfolio_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *portfolioServiceClient) DeletePortfolio(ctx context.Context, in *DeletePortfolioRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, PortfolioService_DeletePortfolio_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PortfolioServiceServer is the server API for PortfolioService service.
 // All implementations must embed UnimplementedPortfolioServiceServer
 // for forward compatibility
@@ -75,6 +97,8 @@ type PortfolioServiceServer interface {
 	CreatePortfolio(context.Context, *CreatePortfolioRequest) (*CreatePortfolioResponse, error)
 	GetPortfolios(context.Context, *GetPortfoliosRequest) (*GetPortfoliosResponse, error)
 	GetPortfolio(context.Context, *GetPortfolioRequest) (*GetPortfolioResponse, error)
+	UpdatePortfolio(context.Context, *UpdatePortfolioRequest) (*Empty, error)
+	DeletePortfolio(context.Context, *DeletePortfolioRequest) (*Empty, error)
 	mustEmbedUnimplementedPortfolioServiceServer()
 }
 
@@ -90,6 +114,12 @@ func (UnimplementedPortfolioServiceServer) GetPortfolios(context.Context, *GetPo
 }
 func (UnimplementedPortfolioServiceServer) GetPortfolio(context.Context, *GetPortfolioRequest) (*GetPortfolioResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPortfolio not implemented")
+}
+func (UnimplementedPortfolioServiceServer) UpdatePortfolio(context.Context, *UpdatePortfolioRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePortfolio not implemented")
+}
+func (UnimplementedPortfolioServiceServer) DeletePortfolio(context.Context, *DeletePortfolioRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePortfolio not implemented")
 }
 func (UnimplementedPortfolioServiceServer) mustEmbedUnimplementedPortfolioServiceServer() {}
 
@@ -158,6 +188,42 @@ func _PortfolioService_GetPortfolio_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PortfolioService_UpdatePortfolio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePortfolioRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PortfolioServiceServer).UpdatePortfolio(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PortfolioService_UpdatePortfolio_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PortfolioServiceServer).UpdatePortfolio(ctx, req.(*UpdatePortfolioRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PortfolioService_DeletePortfolio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePortfolioRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PortfolioServiceServer).DeletePortfolio(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PortfolioService_DeletePortfolio_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PortfolioServiceServer).DeletePortfolio(ctx, req.(*DeletePortfolioRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PortfolioService_ServiceDesc is the grpc.ServiceDesc for PortfolioService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -176,6 +242,14 @@ var PortfolioService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPortfolio",
 			Handler:    _PortfolioService_GetPortfolio_Handler,
+		},
+		{
+			MethodName: "UpdatePortfolio",
+			Handler:    _PortfolioService_UpdatePortfolio_Handler,
+		},
+		{
+			MethodName: "DeletePortfolio",
+			Handler:    _PortfolioService_DeletePortfolio_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

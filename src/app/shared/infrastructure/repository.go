@@ -15,13 +15,12 @@ type Entity interface {
 type Repository[TEntity Entity] interface {
 	Create(entity *TEntity) (string, error)
 	Update(entity *TEntity) error
-	Read(id string) (TEntity, error)
+	Read(id string) (*TEntity, error)
 	ReadAll() ([]TEntity, error)
 	Delete(id string) error
 }
 
-/* MongoDB implementation */
-
+// GetMongoClient returns new MongoDB client.
 func GetMongoClient(mongoUri string) *mongo.Client {
 	ctx := context.TODO()
 

@@ -1,8 +1,7 @@
-package persistence
+package repositories
 
 import (
 	"context"
-	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -33,13 +32,25 @@ func (p PortfolioRepository) Create(entity *Portfolio) (string, error) {
 }
 
 func (p PortfolioRepository) Update(entity *Portfolio) error {
-	fmt.Print(entity)
-	//coll := p.Database.Collection(portfoliosCollection)
-	//result, err := coll.UpdateOne(p.Context, entity)
-	//if err != nil {
-	//	return "", err
-	//}
-	//return result.InsertedID.(primitive.ObjectID).Hex(), nil
+	coll := p.Database.Collection(portfoliosCollection)
+
+	id, err := primitive.ObjectIDFromHex(entity.Id)
+	if err != nil {
+		return err
+	}
+
+	update := bson.D{
+		{"$set", bson.D{
+			{"name", entity.Name},
+			{"from", entity.To},
+			{"to", entity.From}},
+		},
+	}
+
+	_, err = coll.UpdateByID(p.Context, id, update)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -77,7 +88,20 @@ func (p PortfolioRepository) ReadAll() ([]Portfolio, error) {
 	return results, nil
 }
 
-func (p PortfolioRepository) Delete(id string) error {
-	//TODO implement me
-	panic("implement me")
+func (p PortfolioRepository) Delete(idStr string) error {
+	coll := p.Database.Collection(portfoliosCollection)
+
+	id, err := primitive.ObjectIDFromHex(idStr)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.D{{"_id", id}}
+
+	_, err = coll.DeleteOne(p.Context, filter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
